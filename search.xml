@@ -122,7 +122,7 @@
       <link href="/posts/874a95c7.html"/>
       <url>/posts/874a95c7.html</url>
       
-        <content type="html"><![CDATA[<h1 id="hexo-d-部署后总需要重新改域名解决"><a class="markdownIt-Anchor" href="#hexo-d-部署后总需要重新改域名解决"></a> hexo d 部署后总需要重新改域名解决</h1><ol><li>在<code>source</code>目录下（不是hexo根目录下），创建一个<code>CNAME</code>文件，可以用sublime创建，然后保存成（All files格式），<code>CNAME</code>文件里写自己新的域名</li><li><code>hexo g</code>重新生成一下</li><li><code>hexo d</code>部署到 github 上</li><li>完成</li></ol><hr />]]></content>
+        <content type="html"><![CDATA[<h1 id="hexo-d-部署后总需要重新改域名解决"><a class="markdownIt-Anchor" href="#hexo-d-部署后总需要重新改域名解决"></a> hexo d 部署后总需要重新改域名解决</h1><ol><li>在<code>source</code>目录下（不是hexo根目录下），创建一个<code>CNAME</code>文件，可以用sublime创建，然后保存成（All files格式），<code>CNAME</code>文件里写自己新的域名</li><li><code>hexo g</code>重新生成一下</li><li><code>hexo d</code>部署到 github 上</li><li>完成</li></ol><h1 id="hexo-引入图床图片失效问题"><a class="markdownIt-Anchor" href="#hexo-引入图床图片失效问题"></a> hexo 引入图床，图片失效问题</h1><blockquote><p>原文：<a href="https://www.jianshu.com/p/5b58ecce6443">https://www.jianshu.com/p/5b58ecce6443</a></p></blockquote><p>在<code>/butterfly/layout/includes</code>目录下有一个<code>head.pug</code>文件，修改该文件的meta信息，会使生成的所有页面都带有该head。<br />在<code>head.pug</code>文件中添加如下内容：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">meta(name=&quot;referrer&quot; content=&quot;no-referrer&quot;)</span><br></pre></td></tr></table></figure><hr />]]></content>
       
       
       <categories>
