@@ -4,6 +4,58 @@
   
     
     <entry>
+      <title>【Hexo】Hexo魔改参考</title>
+      <link href="/posts/298e2506.html"/>
+      <url>/posts/298e2506.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> Hexo </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>【工具】实用在线网站推荐</title>
+      <link href="/posts/adfe9c7d.html"/>
+      <url>/posts/adfe9c7d.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="综合功能网站"><a class="markdownIt-Anchor" href="#综合功能网站"></a> 综合功能网站</h1><h2 id="致美化"><a class="markdownIt-Anchor" href="#致美化"></a> 致美化</h2><p>致美化网内，有非常多的免费资源，包括但不限于壁纸、字体、鼠标样式等<br />网站地址：<a href="https://zhutix.com/">https://zhutix.com/</a><br /><img src="http://www.crygcat.top:5661/YB4cjj.png" alt="致美化" /><br /><br></p><h1 id="文件格式转换器"><a class="markdownIt-Anchor" href="#文件格式转换器"></a> 文件格式转换器</h1><h2 id="convertio"><a class="markdownIt-Anchor" href="#convertio"></a> Convertio</h2><p>可对多种文件格式进行在线转换，但未注册买套餐的用户，一天只能进行限量的文件转换<br />网站地址：<a href="https://convertio.co/zh/">https://convertio.co/zh/</a><br /><img src="http://www.crygcat.top:5661/JhNUb7.png" alt="文件转换器界面" /></p><p>有非常多的文件格式可以选择，涉及到的领域也很多<br /><img src="http://www.crygcat.top:5661/AkGihF.png" alt="多种文件转换格式" /></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 工具 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 工具 </tag>
+            
+            <tag> 网站 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>【Java】学习记录·Stream</title>
       <link href="/posts/8171c465.html"/>
       <url>/posts/8171c465.html</url>
@@ -12,10 +64,6 @@
       
       
       <categories>
-          
-          <category> 学习 </category>
-          
-          <category> 后端 </category>
           
           <category> Java </category>
           
@@ -46,10 +94,6 @@
       
       <categories>
           
-          <category> 学习 </category>
-          
-          <category> 数据库 </category>
-          
           <category> Mysql </category>
           
       </categories>
@@ -70,6 +114,37 @@
     
     
     <entry>
+      <title>【Hexo】Hexo常见问题合集（持续更新）</title>
+      <link href="/posts/874a95c7.html"/>
+      <url>/posts/874a95c7.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="hexo-d-部署后总需要重新改域名解决"><a class="markdownIt-Anchor" href="#hexo-d-部署后总需要重新改域名解决"></a> hexo d 部署后总需要重新改域名解决</h1><ol><li>在<code>source</code>目录下（不是hexo根目录下），创建一个<code>CNAME</code>文件，可以用sublime创建，然后保存成（All files格式），<code>CNAME</code>文件里写自己新的域名</li><li><code>hexo g</code>重新生成一下</li><li><code>hexo d</code>部署到 github 上</li><li>完成</li></ol><hr />]]></content>
+      
+      
+      <categories>
+          
+          <category> Hexo </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Hexo </tag>
+            
+            <tag> 合集 </tag>
+            
+            <tag> 持续更新 </tag>
+            
+            <tag> 博客 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>【Node】Node.js安装配置</title>
       <link href="/posts/41a2eaca.html"/>
       <url>/posts/41a2eaca.html</url>
@@ -78,12 +153,6 @@
       
       
       <categories>
-          
-          <category> 教程 </category>
-          
-          <category> 学习 </category>
-          
-          <category> 前端 </category>
           
           <category> Node </category>
           
@@ -107,37 +176,6 @@
     
     
     <entry>
-      <title>【Hexo】Hexo常见问题合集（持续更新）</title>
-      <link href="/posts/874a95c7.html"/>
-      <url>/posts/874a95c7.html</url>
-      
-        <content type="html"><![CDATA[<h1 id="hexo-d-部署后总需要重新改域名解决"><a class="markdownIt-Anchor" href="#hexo-d-部署后总需要重新改域名解决"></a> hexo d 部署后总需要重新改域名解决</h1><ol><li>在<code>source</code>目录下（不是hexo根目录下），创建一个<code>CNAME</code>文件，可以用sublime创建，然后保存成（All files格式），<code>CNAME</code>文件里写自己新的域名</li><li><code>hexo g</code>重新生成一下</li><li><code>hexo d</code>部署到 github 上</li><li>完成</li></ol><hr />]]></content>
-      
-      
-      <categories>
-          
-          <category> 合集 </category>
-          
-          <category> 博客 </category>
-          
-          <category> Hexo </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Hexo </tag>
-            
-            <tag> 合集 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>【Hexo】Hexo常用插件推荐（持续更新）</title>
       <link href="/posts/c0ee085a.html"/>
       <url>/posts/c0ee085a.html</url>
@@ -146,10 +184,6 @@
       
       
       <categories>
-          
-          <category> 插件 </category>
-          
-          <category> 博客 </category>
           
           <category> Hexo </category>
           
@@ -161,6 +195,12 @@
             <tag> Hexo </tag>
             
             <tag> 插件 </tag>
+            
+            <tag> 合集 </tag>
+            
+            <tag> 持续更新 </tag>
+            
+            <tag> 博客 </tag>
             
         </tags>
       
@@ -178,10 +218,6 @@
       
       <categories>
           
-          <category> 教程 </category>
-          
-          <category> 博客 </category>
-          
           <category> Hexo </category>
           
       </categories>
@@ -192,6 +228,8 @@
             <tag> Hexo </tag>
             
             <tag> 教程 </tag>
+            
+            <tag> 博客 </tag>
             
         </tags>
       
