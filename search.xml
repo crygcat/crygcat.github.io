@@ -4,11 +4,53 @@
   
     
     <entry>
+      <title>【Java】学习记录·BigDecimal</title>
+      <link href="/posts/c591343f.html"/>
+      <url>/posts/c591343f.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="创建-bigdecimal-对象"><a class="markdownIt-Anchor" href="#创建-bigdecimal-对象"></a> 创建 BigDecimal 对象</h1><p>创建<code>BigDecimal</code>对象常用的方式有2种：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">BigDecimal a = BigDecimal.new Bigdecimal(1);</span><br><span class="line">BigDecimal a1 = BigDecimal.valueOf(1);</span><br></pre></td></tr></table></figure><p>不推荐使用new 关键字创建Bigdecimal对象。原因是当new 的值是一个小数的时候，其真实的值并不是我们想要的值</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">BigDecimal b = new BigDecimal(1.1);</span><br><span class="line">BigDecimal b1 = BigDecimal.valueOf(1.1);</span><br><span class="line">System.out.println(&quot;new的值b: &quot;+b);</span><br><span class="line">System.out.println(&quot;valueOf()的值b1: &quot;+b1);</span><br></pre></td></tr></table></figure><p><strong>输出：</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">new的值b: 1.100000000000000088817841970012523233890533447265625</span><br><span class="line">valueOf()的值b1: 1.1</span><br></pre></td></tr></table></figure><p>这在比较大小的时候，很可能出现意想不到的结果。</p><h1 id="bigdecimal-加减乘除"><a class="markdownIt-Anchor" href="#bigdecimal-加减乘除"></a> BigDecimal 加减乘除</h1><p>加法：add()<br />减法：subtract()<br />乘法：multiply()<br />除法：divide()</p><h2 id="加法"><a class="markdownIt-Anchor" href="#加法"></a> 加法</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public BigDecimal add(BigDecimal augend)</span><br><span class="line">public BigDecimal add(BigDecimal augend, MathContext mc)</span><br><span class="line"></span><br><span class="line">MathContext : 设置保留几位小数，舍入按四舍五入</span><br></pre></td></tr></table></figure><h2 id="减法"><a class="markdownIt-Anchor" href="#减法"></a> 减法</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public BigDecimal subtract(BigDecimal subtrahend)</span><br><span class="line">public BigDecimal subtract(BigDecimal subtrahend, MathContext mc)</span><br><span class="line"></span><br><span class="line">MathContext : 设置保留几位小数，舍入按四舍五入</span><br></pre></td></tr></table></figure><h2 id="乘法"><a class="markdownIt-Anchor" href="#乘法"></a> 乘法</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public BigDecimal multiply(BigDecimal multiplicand)</span><br><span class="line">public BigDecimal multiply(BigDecimal multiplicand, MathContext mc)</span><br><span class="line"></span><br><span class="line">MathContext : 设置保留几位小数，舍入按四舍五入</span><br></pre></td></tr></table></figure><h2 id="除法"><a class="markdownIt-Anchor" href="#除法"></a> 除法</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public BigDecimal divide(BigDecimal divisor)</span><br><span class="line">public BigDecimal divide(BigDecimal divisor, MathContext mc)</span><br><span class="line">public BigDecimal divide(BigDecimal divisor, int roundingMode)</span><br><span class="line">public BigDecimal divide(BigDecimal divisor, RoundingMode roundingMode)</span><br><span class="line">public BigDecimal divide(BigDecimal divisor, int scale, RoundingMode roundingMode)</span><br><span class="line">public BigDecimal divide(BigDecimal divisor, int scale, int roundingMode)</span><br></pre></td></tr></table></figure><p>其中<code>public BigDecimal divide(BigDecimal divisor)</code>不推荐使用。idea警告如下:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Inspection info: Reports calls to divide() or setScale() without a rounding mode argument. Such calls can lead to an ArithmeticException when the exact value cannot be represented in the result (e.g. because it has a non-terminating decimal expansion). Specifying a rounding mode prevents the ArithmeticException.</span><br><span class="line"></span><br><span class="line">翻译:</span><br><span class="line">检查信息:报告调用divide()或setScale()，而不带舍入模式参数。当结果中不能表示精确值时，这种调用可能导致算术异常(例如，因为它具有无限的十进制展开)。指定舍入模式可以防止算术异常。</span><br><span class="line"></span><br><span class="line">简单点说就是除不尽的时候会报错</span><br></pre></td></tr></table></figure><p>所以用除法的时候，我们需要指定其舍入模式。推荐使用:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public BigDecimal divide(BigDecimal divisor, int scale, RoundingMode roundingMode)</span><br><span class="line">public BigDecimal divide(BigDecimal divisor, int scale, int roundingMode)</span><br><span class="line"></span><br><span class="line">scale : 保留几位小数</span><br><span class="line">RoundingMode : 指定舍入模式</span><br></pre></td></tr></table></figure><p>Demo：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">BigDecimal divide = a.divide(b, 2, RoundingMode.DOWN);</span><br><span class="line">System.out.println(&quot;divide: &quot;+divide);</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Java </tag>
+            
+            <tag> 后端 </tag>
+            
+            <tag> 学习 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>【Makedown】Makedown超详细使用说明</title>
+      <link href="/posts/7fce6291.html"/>
+      <url>/posts/7fce6291.html</url>
+      
+        <content type="html"><![CDATA[<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">table th:first-of-type&#123;</span><br><span class="line">width: 25%;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>【Hexo】Hexo Butterfly魔改参考</title>
       <link href="/posts/298e2506.html"/>
       <url>/posts/298e2506.html</url>
       
-        <content type="html"><![CDATA[<h1 id="归档页卡片"><a class="markdownIt-Anchor" href="#归档页卡片"></a> 归档页卡片</h1><blockquote><p>参考：<a href="https://ichika.cc/Article/beautiful_MyBeautiful/#%E5%BD%92%E6%A1%A3%E3%80%81%E6%A0%87%E7%AD%BE%E3%80%81%E5%88%86%E7%B1%BB%E9%A1%B5%E5%8D%A1%E7%89%87">ichikaの小窝 - 归档、标签、分类页卡片</a></p></blockquote><h1 id="侧边栏"><a class="markdownIt-Anchor" href="#侧边栏"></a> 侧边栏</h1><h2 id="归档修改"><a class="markdownIt-Anchor" href="#归档修改"></a> 归档修改</h2><blockquote><p>参考：<a href="https://anzhiy.cn/posts/sdxhu.html#%E4%BE%A7%E8%BE%B9%E6%A0%8F%E5%BD%92%E6%A1%A3%E4%BF%AE%E6%94%B9">安知鱼 - 侧边栏归档修改</a></p></blockquote><h2 id="最近文章修改"><a class="markdownIt-Anchor" href="#最近文章修改"></a> 最近文章修改</h2><blockquote><p>参考：<a href="https://anzhiy.cn/posts/sdxhu.html">安知鱼 - 侧边栏最近文章修改</a></p></blockquote>]]></content>
+        <content type="html"><![CDATA[<h1 id="操作"><a class="markdownIt-Anchor" href="#操作"></a> 操作</h1><h2 id="鼠标样式"><a class="markdownIt-Anchor" href="#鼠标样式"></a> 鼠标样式</h2><blockquote><p>参考：<a href="https://moonshuo.cn/posts/1481.html#%E9%BC%A0%E6%A0%87%E6%A0%B7%E5%BC%8F%E6%9B%B4%E6%94%B9">偷掉月亮 - 鼠标样式更改</a></p></blockquote><h1 id="归档页卡片"><a class="markdownIt-Anchor" href="#归档页卡片"></a> 归档页卡片</h1><blockquote><p>参考：<a href="https://ichika.cc/Article/beautiful_MyBeautiful/#%E5%BD%92%E6%A1%A3%E3%80%81%E6%A0%87%E7%AD%BE%E3%80%81%E5%88%86%E7%B1%BB%E9%A1%B5%E5%8D%A1%E7%89%87">ichikaの小窝 - 归档、标签、分类页卡片</a></p></blockquote><div calss='anzhiyu-tag-link'><a class="tag-Link" target="_blank" href=" https://ichika.cc/Article/beautiful_MyBeautiful/#归档、标签、分类页卡片">    <div class="tag-link-tips">引用站外地址</div>    <div class="tag-link-bottom">        <div class="tag-link-left" style="background-image: url(https://api.iowen.cn/favicon/ https://ichika.cc/Article/beautiful_MyBeautiful/#归档、标签、分类页卡片.png);"></div>        <div class="tag-link-right">            <div class="tag-link-title">归档、标签、分类页卡片</div>            <div class="tag-link-sitename"> ichikaの小窝</div>        </div>        <i class="fa-solid fa-angle-right"></i>    </div>    </a></div><h1 id="侧边栏"><a class="markdownIt-Anchor" href="#侧边栏"></a> 侧边栏</h1><h2 id="归档修改"><a class="markdownIt-Anchor" href="#归档修改"></a> 归档修改</h2><blockquote><p>参考：<a href="https://anzhiy.cn/posts/sdxhu.html#%E4%BE%A7%E8%BE%B9%E6%A0%8F%E5%BD%92%E6%A1%A3%E4%BF%AE%E6%94%B9">安知鱼 - 侧边栏归档修改</a></p></blockquote><h2 id="最近文章修改"><a class="markdownIt-Anchor" href="#最近文章修改"></a> 最近文章修改</h2><blockquote><p>参考：<a href="https://anzhiy.cn/posts/sdxhu.html">安知鱼 - 侧边栏最近文章修改</a></p></blockquote><h1 id="网址"><a class="markdownIt-Anchor" href="#网址"></a> 网址</h1><h2 id="网址卡片外挂标签"><a class="markdownIt-Anchor" href="#网址卡片外挂标签"></a> 网址卡片外挂标签</h2><blockquote><p>参考：<a href="https://blog.zhheo.com/p/ccaf9148.html">HEO - 网址卡片外挂标签</a></p></blockquote>]]></content>
       
       
       <categories>
@@ -20,9 +62,9 @@
       
         <tags>
             
-            <tag> 博客 </tag>
-            
             <tag> Hexo </tag>
+            
+            <tag> 博客 </tag>
             
             <tag> Butterfly </tag>
             
@@ -68,7 +110,7 @@
       <link href="/posts/8171c465.html"/>
       <url>/posts/8171c465.html</url>
       
-        <content type="html"><![CDATA[<hr />]]></content>
+        <content type="html"><![CDATA[<h1 id="简介"><a class="markdownIt-Anchor" href="#简介"></a> 简介</h1><p><code>stream</code>流是<code>Java8</code>为<code>collection类</code>新增的一种功能，利用stream，我们可以</p><ol><li>不写<code>for</code>循环，而遍历整个<code>collection</code>，且速度更快</li><li>替换<code>collection</code>中的成员（类型和值都可以替换）</li><li>收集替换结果，然后将原collection类转为任意想要的新collection类</li></ol><h1 id="使用"><a class="markdownIt-Anchor" href="#使用"></a> 使用</h1><h2 id="映射"><a class="markdownIt-Anchor" href="#映射"></a> 映射</h2><hr />]]></content>
       
       
       <categories>
@@ -80,11 +122,11 @@
       
         <tags>
             
-            <tag> 学习 </tag>
-            
             <tag> Java </tag>
             
             <tag> 后端 </tag>
+            
+            <tag> 学习 </tag>
             
         </tags>
       
@@ -109,11 +151,11 @@
       
         <tags>
             
+            <tag> 学习 </tag>
+            
             <tag> Mysql </tag>
             
             <tag> 数据库 </tag>
-            
-            <tag> 学习 </tag>
             
         </tags>
       
@@ -138,9 +180,9 @@
       
         <tags>
             
-            <tag> 博客 </tag>
-            
             <tag> Hexo </tag>
+            
+            <tag> 博客 </tag>
             
             <tag> 合集 </tag>
             
@@ -200,9 +242,9 @@
       
         <tags>
             
-            <tag> 博客 </tag>
-            
             <tag> Hexo </tag>
+            
+            <tag> 博客 </tag>
             
             <tag> 合集 </tag>
             
@@ -233,9 +275,9 @@
       
         <tags>
             
-            <tag> 博客 </tag>
-            
             <tag> Hexo </tag>
+            
+            <tag> 博客 </tag>
             
             <tag> 教程 </tag>
             

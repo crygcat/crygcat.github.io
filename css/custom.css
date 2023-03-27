@@ -15,11 +15,19 @@
   --crygcat-black-op: rgba(0, 0, 0, 0.2);
   --crygcat-theme-op: #F4A7B923;
   --crygcat-shadow-theme: 0 8px 12px -3px var(--crygcat-theme-op);
-  
+  --crygcat-secondbg: #f7eeed;
+  --crygcat-card-border: #FEDFE1;
   --crygcat-white-acrylic1: #fefeff !important;
   --crygcat-white-acrylic2: #fcfdff !important;
   --crygcat-black-acrylic2: #08080a !important;
   --crygcat-black-acrylic1: #0b0b0e !important;
+  --style-border: 1px solid var(--crygcat-card-border);
+  --style-border-hover: 1px solid var(--anzhiyu-main);
+  --style-border-dashed: 1px dashed var(--anzhiyu-theme-op);
+  --style-border-avatar: 4px solid var(--anzhiyu-background);
+  --style-border-always: 1px solid var(--crygcat-card-border);
+  
+  
   
   --ichika-color: #49A6E9;
   --ichika-hover-color: #ECAFFF;
@@ -57,12 +65,7 @@
   --anzhiyu-shadow-border: 0 8px 16px -4px #2c2d300c;
   --anzhiyu-shadow-blackdeep: 0 2px 16px -3px rgba(0, 0, 0, 0.15);
   --anzhiyu-logo-color: linear-gradient(215deg, #4584ff 30%, #ff7676 70%);
-  --style-border: 1px solid var(--anzhiyu-card-border);
   --anzhiyu-blue-main: #3b70fc;
-  --style-border-hover: 1px solid var(--anzhiyu-main);
-  --style-border-dashed: 1px dashed var(--anzhiyu-theme-op);
-  --style-border-avatar: 4px solid var(--anzhiyu-background);
-  --style-border-always: 1px solid var(--anzhiyu-card-border);
   
   --anzhiyu-main-none: #b8b8b800 !important;
 }
@@ -442,7 +445,7 @@ li.card-archive-list-item {
 
 /* HEO - 网址卡片外挂标签 - 开始 */
 #article-container .tag-Link {
-    background: var(--crygcat-color);
+    background: var(--crygcat-secondbg);
     border-radius: 8px!important;
     display: flex;
     border: var(--style-border);
