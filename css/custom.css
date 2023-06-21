@@ -7,23 +7,29 @@
 
 /* 颜色 */
 :root {
-  --crygcat-color: #F4A7B9;
-  --crygcat-fontcolor: #363636;
+  --crygcat-color: #EC97B9;
+  --crygcat-font-color: #363636;
+  --crygcat-font-grey: #888888;
   --crygcat-white: #fff;
   --crygcat-white-op: rgba(255, 255, 255, 0.2);
   --crygcat-black: #000;
   --crygcat-black-op: rgba(0, 0, 0, 0.2);
+  --crygcat-theme: #F8C3CD;
   --crygcat-theme-op: #F4A7B923;
+  --crygcat-main: var(--crygcat-theme);
+  --crygcat-main-op: var(--crygcat-theme-op);
   --crygcat-shadow-theme: 0 8px 12px -3px var(--crygcat-theme-op);
-  --crygcat-secondbg: #f7eeed;
+  --crygcat-secondbg: #f1eeec;
   --crygcat-card-border: #FEDFE1;
+  --crygcat-footer-bg: var(--crygcat-white);
+  --crygcat-gray: #777777;
   --crygcat-white-acrylic1: #fefeff !important;
   --crygcat-white-acrylic2: #fcfdff !important;
   --crygcat-black-acrylic2: #08080a !important;
   --crygcat-black-acrylic1: #0b0b0e !important;
   --style-border: 1px solid var(--crygcat-card-border);
-  --style-border-hover: 1px solid var(--anzhiyu-main);
-  --style-border-dashed: 1px dashed var(--anzhiyu-theme-op);
+  --style-border-hover: 1px solid var(--crygcat-main);
+  --style-border-dashed: 1px dashed var(--crygcat-theme-op);
   --style-border-avatar: 4px solid var(--anzhiyu-background);
   --style-border-always: 1px solid var(--crygcat-card-border);
   
@@ -100,7 +106,7 @@
 
 [data-theme="dark"] {
   --crygcat-color: #F8C3CD;
-  --crygcat-fontcolor: #f7f7fa;
+  --crygcat-font-color: #f7f7fa;
   
   --ichika-color: #1688C9;
   --ichika-widget-hover: #1B6587;
@@ -136,6 +142,127 @@
   --anzhiyu-shadow-light2black: 0 5px 12px -5px rgba(102, 68, 68, 0);
   --anzhiyu-card-border: #42444a;
 }
+
+#nav *::after{
+    background-color: transparent!important;
+	
+}
+
+/* Ariasakaの小窝 - 导航栏居中 - 开始 */
+#nav-right{
+    flex:1 1 auto;
+    justify-content: flex-end;
+    margin-left: auto;
+    display: flex;
+    flex-wrap:nowrap;
+}
+/* Ariasakaの小窝 - 导航栏居中 - 结束 */
+
+
+/* Ariasakaの小窝 - 顶栏常驻 - 开始 */
+.nav-fixed #nav{
+    transform: translateY(58px)!important;
+    -webkit-transform: translateY(58px)!important;
+    -moz-transform: translateY(58px)!important;
+    -ms-transform: translateY(58px)!important;
+    -o-transform: translateY(58px)!important;
+}
+#nav{
+    transition: none!important;
+    -webkit-transition: none!important;
+    -moz-transition: none!important;
+    -ms-transition: none!important;
+    -o-transition: none!important;
+}
+/* Ariasakaの小窝 - 顶栏常驻 - 结束 */
+
+
+/* Ariasakaの小窝 - 显示标题 - 开始 */
+#page-name::before{
+    font-size:18px;
+    position: absolute;
+    width:100%;
+    height:100%;
+    border-radius: 8px;
+    color:white!important;
+    top:0;
+    left:0;
+    content:'回到顶部';
+    background-color: var(--crygcat-color);
+    transition: all .3s;
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    -ms-transition: all .3s;
+    -o-transition: all .3s;
+    opacity: 0;
+    box-shadow: 0 0 3px var(--crygcat-color);
+    line-height: 45px; /*如果垂直位置不居中可以微调此值，也可以删了*/
+}
+#page-name:hover:before{
+    opacity: 1;
+}
+@media screen and (max-width:900px){
+    #page-name,#menus{
+      display:none!important;
+    }
+}
+#name-container{
+    transition: all .3s;
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    -ms-transition: all .3s;
+    -o-transition: all .3s;
+}
+#name-container:hover{
+    scale:1.03
+}
+#page-name{
+    position: relative;
+    padding:10px 30px/*如果文字间隔不合理可以微调修改，第二个是水平方向的padding，第一个是垂直的*/
+}
+#nav{
+    padding: 0 20px;
+}
+/* Ariasakaの小窝 - 显示标题 - 结束 */
+
+
+/* Ariasakaの小窝 - 网站标题部分的增强版 - 开始 */
+#site-name::before{
+    opacity: 0;
+    background-color: var(--crygcat-color)!important;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+    transition: .3s;
+    -webkit-transition: .3s;
+    -moz-transition: .3s;
+    -ms-transition: .3s;
+    -o-transition: .3s;
+    position:absolute;
+    top:0!important;
+    right:0!important;
+    width:100%;
+    height:100%;
+    content: "\f015";
+    box-shadow: 0 0 5px var(--crygcat-color);
+    font-family: "Font Awesome 6 Free";
+    text-align: center;
+    color:white;
+    line-height:27px;/*如果有溢出或者垂直不居中的现象微调一下这个参数*/
+    font-size: 18px;/*根据个人喜好*/
+}
+#site-name:hover::before{
+    opacity: 1;
+    scale:1.03;
+}
+#site-name{
+    position: relative;
+    font-size: 24px; /*一定要把字体调大点，否则效果惨不忍睹！*/
+}
+/* Ariasakaの小窝 - 网站标题部分的增强版 - 结束 */
+
 
 /* ichikaの小窝 - 归档、标签、分类页 - 开始 */
 .layout.hide-aside{
@@ -320,6 +447,7 @@
 }
 /* ichikaの小窝 - 归档、标签、分类页 - 结束 */
 
+
 /* 安知鱼 - 侧边栏归档样式 - 开始 */
 span.card-archive-list-count {
   width: auto;
@@ -396,6 +524,7 @@ li.card-archive-list-item {
 }
 /* 安知鱼 - 侧边栏归档样式 - 结束 */
 
+
 /* 安知鱼 - 侧边栏最新文章样式 - 开始 */
 #aside-content .aside-list > .aside-list-item .content > time {
   display: none;
@@ -443,6 +572,35 @@ li.card-archive-list-item {
 }
 /* 安知鱼 - 侧边栏最新文章样式 - 结束 */
 
+
+/* 安知鱼 - 侧边栏标签修改 - 开始 */
+#aside-content .card-tag-cloud a {
+  color: var(--crygcat-font-color) !important;
+  font-size: 1.05rem !important;
+  border-radius: 8px;
+  display: inline-block;
+  margin-right: 4px;
+}
+#aside-content .card-tag-cloud a:hover {
+  background: var(--crygcat-color);
+  color: var(--crygcat-white) !important;
+  box-shadow: var(--crygcat-color);
+}
+@media screen and (min-width: 1300px) {
+  #aside-content .card-tag-cloud a:hover {
+    transform: scale(1.03);
+  }
+  #aside-content .card-tag-cloud a:active {
+    transform: scale(0.97);
+  }
+}
+#aside-content .card-tag-cloud a sup {
+  opacity: 0.4;
+  margin-left: 2px;
+}
+/* 安知鱼 - 侧边栏标签修改 - 结束 */
+
+
 /* HEO - 网址卡片外挂标签 - 开始 */
 #article-container .tag-Link {
     background: var(--crygcat-secondbg);
@@ -463,7 +621,7 @@ li.card-archive-list-item {
     border-bottom: var(--style-border);
     padding-bottom: 4px;
     font-size: 0.6rem;
-    color: var(--heo-gray);
+    color: var(--crygcat-gray);
     font-weight: normal;
 }
   
@@ -496,7 +654,7 @@ li.card-archive-list-item {
   
 #article-container .tag-Link .tag-link-bottom .tag-link-right .tag-link-sitename {
     font-size: 0.7rem;
-    color: var(--heo-gray);
+    color: var(--crygcat-gray);
     font-weight: normal;
     margin-top: 4px;
 }
@@ -509,3 +667,127 @@ li.card-archive-list-item {
     margin-left: auto;
 }
 /* HEO - 网址卡片外挂标签 - 结束 */
+
+
+/* ichika - 页脚样式修改 - 开始 */
+.footer_custom_text a{
+    margin:0 5px;
+}
+#footer::before{
+    content:none;
+}
+#footer-wrap{
+    color:var(--crygcat-font-color);
+    padding:50px 5% 35px 5%;
+    display:flex;
+    flex-wrap:wrap;
+    background:var(--crygcat-footer-bg);
+    position:relative;
+	border-top: 1px solid #ccc;
+}
+#footer-wrap > div{
+    width:50%;
+}
+#footer-left{
+    text-align:left
+}
+.footer-title{
+    font-size:1.5rem;
+    font-weight:bold;
+}
+.footer-copyright{
+    font-size:1rem;
+    font-weight:normal;
+}
+#footer-wrap .footer-button {
+    display: flex;
+    margin: 15px 0;
+}
+#footer-wrap .footer-button > a {
+    font-size: 1.3rem;
+    margin-right:24px;
+    transition: 0.2s;
+    background: black;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    border-radius: 50%;
+    color: white;
+}
+#footer-wrap .footer-button > a:hover{
+    background:var(--crygcat-color);
+    transition:0.2s;
+}
+#footer-wrap .footer-button > a i{
+    margin:auto;
+    line-height:42px;
+}
+#footer-wrap .iconfont{
+    font-size:1.3rem;
+}
+#footer-right {
+    text-align: right;
+    height: max-content;
+    margin-top: auto;
+}
+#footer-right p,#footer-right a{
+    color:var(--crygcat-font-grey);
+}
+.footer-totop {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.footer-totop i {
+    font-size: 2rem;
+    animation: footerToTop 1.2s linear infinite;
+}
+.footer-info p{
+    font-size:14px;
+    margin:0;
+}
+.footer-info a{
+    margin-left:20px;
+    transition:0.2s;
+}
+.footer-info a:hover{
+    color:var(--crygcat-color)!important;
+    transition:0.2s;
+}
+.footer-info a:hover img{
+    filter: none!important;
+    transition:0.2s;
+}
+.footer-service img{
+    height:20px;
+    filter:grayscale(1);
+    margin-left:20px;
+    margin-top:10px;
+    transition:0.2s;
+}
+.footer-service img:hover{
+    filter:none;
+    transition:0.2s;
+}
+@keyframes footerToTop{
+    0%{
+        transform:translateY(0);
+    }
+    60% {
+        transform: translateY(-25%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+@media screen and (max-width:768px) {
+    #footer-wrap > div {
+        width: 100%;
+        text-align:center;
+    }
+    #footer-wrap .footer-button > a{
+        margin:0 auto;
+    }
+}
+/* ichika - 页脚样式修改 - 结束 */
