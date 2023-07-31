@@ -79,7 +79,7 @@
       <link href="/posts/54381121.html"/>
       <url>/posts/54381121.html</url>
       
-        <content type="html"><![CDATA[<h1 id="简介"><a class="markdownIt-Anchor" href="#简介"></a> 简介</h1>]]></content>
+        <content type="html"><![CDATA[<h1 id="简介"><a class="markdownIt-Anchor" href="#简介"></a> 简介</h1><hr /><h1 id="安装"><a class="markdownIt-Anchor" href="#安装"></a> 安装</h1><h2 id="一-前置"><a class="markdownIt-Anchor" href="#一-前置"></a> 一、前置</h2><blockquote><p>该安装方法是基于<code>Docker</code>安装，其余安装方式可从其他渠道查询<br />安装Docker：</p></blockquote>]]></content>
       
       
       <categories>
@@ -309,7 +309,7 @@
       <link href="/posts/db7550aa.html"/>
       <url>/posts/db7550aa.html</url>
       
-        <content type="html"><![CDATA[<h1 id="实现用逗号进行拼接-以逗号进行分割"><a class="markdownIt-Anchor" href="#实现用逗号进行拼接-以逗号进行分割"></a> 实现用逗号进行拼接、以逗号进行分割</h1><h2 id="group_concat-函数"><a class="markdownIt-Anchor" href="#group_concat-函数"></a> group_concat 函数</h2><p>用法：group_concat (待拼接对象)<br />输出：用逗号进行拼接后的字符串</p><hr /><h1 id="获取特定列小于某值的记录"><a class="markdownIt-Anchor" href="#获取特定列小于某值的记录"></a> 获取特定列小于某值的记录</h1><p>想法：<br />我想获取一个表中的所有记录，直到特定列的总和小于或等于<code>n</code>。</p><p>例如：</p><table><thead><tr><th style="text-align:left">slno</th><th style="text-align:left">item</th><th style="text-align:left">price</th></tr></thead><tbody><tr><td style="text-align:left">1</td><td style="text-align:left">item1</td><td style="text-align:left">1000</td></tr><tr><td style="text-align:left">2</td><td style="text-align:left">item2</td><td style="text-align:left">2000</td></tr><tr><td style="text-align:left">3</td><td style="text-align:left">item3</td><td style="text-align:left">3000</td></tr><tr><td style="text-align:left">4</td><td style="text-align:left">item4</td><td style="text-align:left">4000</td></tr><tr><td style="text-align:left">5</td><td style="text-align:left">item5</td><td style="text-align:left">5000</td></tr><tr><td style="text-align:left">6</td><td style="text-align:left">item6</td><td style="text-align:left">6000</td></tr></tbody></table><p>我想从上面的表中获取所有记录，直到总和(价格)小于或等于 10000</p><p>因此，对于上表，我的结果将是前 4 条记录。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">//方案一</span><br><span class="line">SELECT slno, item, price</span><br><span class="line">  FROM</span><br><span class="line">(</span><br><span class="line">  SELECT slno, item, price, @t := @t + price total</span><br><span class="line">    FROM table1 CROSS JOIN (SELECT @t := 0) i</span><br><span class="line">   ORDER BY slno</span><br><span class="line">) q</span><br><span class="line"> WHERE total &lt;= 10000</span><br><span class="line"> </span><br><span class="line">//方案二</span><br><span class="line">SELECT slno, item, price</span><br><span class="line">  FROM</span><br><span class="line">(</span><br><span class="line">  SELECT slno, item, price, </span><br><span class="line">  (</span><br><span class="line">    SELECT SUM(price)</span><br><span class="line">      FROM table1</span><br><span class="line">     WHERE slno &lt;= t.slno</span><br><span class="line">  ) total</span><br><span class="line">    FROM table1 t</span><br><span class="line">) q</span><br><span class="line"> WHERE total &lt;= 10000</span><br><span class="line"> ORDER BY slno</span><br></pre></td></tr></table></figure><hr /><h1 id="left-join查找和展示count为0的记录"><a class="markdownIt-Anchor" href="#left-join查找和展示count为0的记录"></a> left join查找和展示count(*)为0的记录</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">SELECT </span><br><span class="line">A.policyCode, </span><br><span class="line">IFNULL(B.ZH,0) </span><br><span class="line">FROM (select policyCode from t_warningPolicy) AS A </span><br><span class="line">LEFT JOIN </span><br><span class="line">(</span><br><span class="line">SELECT policyCode,COUNT(*) as ZH FROM t_warning GROUP BY policyCode</span><br><span class="line">) AS B </span><br><span class="line">ON A.policyCode=B.policyCode</span><br></pre></td></tr></table></figure>]]></content>
+        <content type="html"><![CDATA[<h1 id="实现用逗号进行拼接-以逗号进行分割"><a class="markdownIt-Anchor" href="#实现用逗号进行拼接-以逗号进行分割"></a> 实现用逗号进行拼接、以逗号进行分割</h1><h2 id="group_concat-函数"><a class="markdownIt-Anchor" href="#group_concat-函数"></a> group_concat 函数</h2><p>用法：group_concat (待拼接对象)<br />输出：用逗号进行拼接后的字符串</p><hr /><h1 id="获取特定列小于某值的记录"><a class="markdownIt-Anchor" href="#获取特定列小于某值的记录"></a> 获取特定列小于某值的记录</h1><p>想法：<br />我想获取一个表中的所有记录，直到特定列的总和小于或等于<code>n</code>。</p><p>例如：</p><table><thead><tr><th style="text-align:left">slno</th><th style="text-align:left">item</th><th style="text-align:left">price</th></tr></thead><tbody><tr><td style="text-align:left">1</td><td style="text-align:left">item1</td><td style="text-align:left">1000</td></tr><tr><td style="text-align:left">2</td><td style="text-align:left">item2</td><td style="text-align:left">2000</td></tr><tr><td style="text-align:left">3</td><td style="text-align:left">item3</td><td style="text-align:left">3000</td></tr><tr><td style="text-align:left">4</td><td style="text-align:left">item4</td><td style="text-align:left">4000</td></tr><tr><td style="text-align:left">5</td><td style="text-align:left">item5</td><td style="text-align:left">5000</td></tr><tr><td style="text-align:left">6</td><td style="text-align:left">item6</td><td style="text-align:left">6000</td></tr></tbody></table><p>我想从上面的表中获取所有记录，直到总和(价格)小于或等于 10000</p><p>因此，对于上表，我的结果将是前 4 条记录。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">//方案一</span><br><span class="line">SELECT slno, item, price</span><br><span class="line">  FROM</span><br><span class="line">(</span><br><span class="line">  SELECT slno, item, price, @t := @t + price total</span><br><span class="line">    FROM table1 CROSS JOIN (SELECT @t := 0) i</span><br><span class="line">   ORDER BY slno</span><br><span class="line">) q</span><br><span class="line"> WHERE total &lt;= 10000</span><br><span class="line"> </span><br><span class="line">//方案二</span><br><span class="line">SELECT slno, item, price</span><br><span class="line">  FROM</span><br><span class="line">(</span><br><span class="line">  SELECT slno, item, price, </span><br><span class="line">  (</span><br><span class="line">    SELECT SUM(price)</span><br><span class="line">      FROM table1</span><br><span class="line">     WHERE slno &lt;= t.slno</span><br><span class="line">  ) total</span><br><span class="line">    FROM table1 t</span><br><span class="line">) q</span><br><span class="line"> WHERE total &lt;= 10000</span><br><span class="line"> ORDER BY slno</span><br></pre></td></tr></table></figure><hr /><h1 id="left-join查找和展示count为0的记录"><a class="markdownIt-Anchor" href="#left-join查找和展示count为0的记录"></a> left join查找和展示count(*)为0的记录</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">SELECT </span><br><span class="line">A.policyCode, </span><br><span class="line">IFNULL(B.ZH,0) </span><br><span class="line">FROM (select policyCode from t_warningPolicy) AS A </span><br><span class="line">LEFT JOIN </span><br><span class="line">(</span><br><span class="line">SELECT policyCode,COUNT(*) as ZH FROM t_warning GROUP BY policyCode</span><br><span class="line">) AS B </span><br><span class="line">ON A.policyCode=B.policyCode</span><br></pre></td></tr></table></figure><hr /><h1 id="group-by-时出现-only_full_group_by-错误"><a class="markdownIt-Anchor" href="#group-by-时出现-only_full_group_by-错误"></a> group by 时出现 only_full_group_by 错误</h1><h2 id="any_value"><a class="markdownIt-Anchor" href="#any_value"></a> ANY_VALUE</h2><p>用法：ANY_VALUE(字段名)</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">select</span><br><span class="line">  id,</span><br><span class="line">  ANY_VALUE(name)</span><br><span class="line">from table</span><br><span class="line">group by id</span><br></pre></td></tr></table></figure>]]></content>
       
       
       <categories>
@@ -489,9 +489,9 @@
       
         <tags>
             
-            <tag> Hexo </tag>
-            
             <tag> 博客 </tag>
+            
+            <tag> Hexo </tag>
             
             <tag> Butterfly </tag>
             
@@ -613,9 +613,9 @@
             
             <tag> 持续更新 </tag>
             
-            <tag> Hexo </tag>
-            
             <tag> 博客 </tag>
+            
+            <tag> Hexo </tag>
             
         </tags>
       
@@ -675,9 +675,9 @@
             
             <tag> 持续更新 </tag>
             
-            <tag> Hexo </tag>
-            
             <tag> 博客 </tag>
+            
+            <tag> Hexo </tag>
             
             <tag> 插件 </tag>
             
@@ -704,9 +704,9 @@
       
         <tags>
             
-            <tag> Hexo </tag>
-            
             <tag> 博客 </tag>
+            
+            <tag> Hexo </tag>
             
             <tag> 教程 </tag>
             
