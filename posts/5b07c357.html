@@ -7,7 +7,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://blog.crygcat.top/img/crygcat_head.jpg">
 <meta property="article:published_time" content="2023-06-15T07:47:17.000Z">
-<meta property="article:modified_time" content="2023-08-03T07:04:50.336Z">
+<meta property="article:modified_time" content="2023-08-04T15:26:18.672Z">
 <meta property="article:author" content="在流浪的猫">
 <meta property="article:tag" content="Docker">
 <meta property="article:tag" content="工具">
@@ -59,7 +59,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2023-08-03 15:04:50'
+  postUpdate: '2023-08-04 23:26:18'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -183,7 +183,7 @@ if (false) {
 <p>MinIO 是一个基于<code>Apache License v2.0</code>开源协议的对象存储服务。它兼容亚马逊S3云存储服务接口，非常适合于存储大容量非结构化的数据，例如图片、视频、日志文件、备份数据和容器/虚拟机镜像等，而一个对象文件可以是任意大小，从<code>几kb</code>到最大<code>5T</code>不等。</p>
 <p>MinIO 是一个非常轻量的服务,可以很简单的和其他应用的结合，类似<code>NodeJS</code>,<code>Redis</code>或者<code>MySQL</code>。</p>
 <p>官网：<a target="_blank" rel="noopener" href="http://www.minio.org.cn/">MinIO | 高性能，对Kubernetes友好的对象存储</a><br />
-<img src="http://www.crygcat.top:5661/TtWsLP.png" alt="官网" /></p>
+<img src="http://www.crygcat.top:5661/i/20230804/64cd17e7dcdfb.png" alt="官网" /></p>
 <hr />
 <h1 id="二-minio的优点"><a class="markdownIt-Anchor" href="#二-minio的优点"></a> 二、MinIO的优点</h1>
 <h2 id="1-性能"><a class="markdownIt-Anchor" href="#1-性能"></a> 1. 性能</h2>
@@ -218,26 +218,26 @@ if (false) {
 <h2 id="3-配置"><a class="markdownIt-Anchor" href="#3-配置"></a> 3. 配置</h2>
 <h3 id="创建-buckets桶"><a class="markdownIt-Anchor" href="#创建-buckets桶"></a> 创建 Buckets（桶）</h3>
 <p>点击<code>Buckets</code> - <code>Create Bucket</code><br />
-<img src="http://www.crygcat.top:5661/3kJA2o.png" alt="创建 Buckets（桶）" /></p>
+<img src="http://www.crygcat.top:5661/i/20230804/64cd17e58509f.png" alt="创建 Buckets（桶）01" /></p>
 <p>填写桶名称，根据需要点击选项，最后点击<code>Create Bucket</code>完成创建<br />
-<img src="http://www.crygcat.top:5661/pQzYYj.png" alt="创建 Buckets（桶）" /></p>
+<img src="http://www.crygcat.top:5661/i/20230804/64cd17e5d5d29.png" alt="创建 Buckets（桶）02" /></p>
 <blockquote>
 <p>注：完成创建后需重启才能生效，可使用<code>Docker</code>直接重启</p>
 </blockquote>
 <h3 id="创建-service-account"><a class="markdownIt-Anchor" href="#创建-service-account"></a> 创建 Service Account</h3>
 <p>点击<code>Access Keys</code> - <code>Create access key</code><br />
-<img src="http://www.crygcat.top:5661/3wbDV4.png" alt="创建Key" /></p>
+<img src="http://www.crygcat.top:5661/i/20230804/64cd17e65bb7e.png" alt="创建Key01" /></p>
 <blockquote>
 <p>如果只对特定Buckets（桶）开放 Service Account，则需要<code>Restrict beyond user policy</code>选择<code>ON</code>，并对内容进行配置</p>
 </blockquote>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"> &quot;Version&quot;: &quot;2012-10-17&quot;,</span><br><span class="line"> &quot;Statement&quot;: [</span><br><span class="line">  &#123;</span><br><span class="line">   &quot;Effect&quot;: &quot;Allow&quot;,</span><br><span class="line">   &quot;Action&quot;: [</span><br><span class="line">    &quot;admin:*&quot;</span><br><span class="line">   ]</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">   &quot;Effect&quot;: &quot;Allow&quot;,</span><br><span class="line">   &quot;Action&quot;: [</span><br><span class="line">    &quot;kms:*&quot;</span><br><span class="line">   ]</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">   &quot;Effect&quot;: &quot;Allow&quot;,</span><br><span class="line">   &quot;Action&quot;: [</span><br><span class="line">    &quot;s3:*&quot;</span><br><span class="line">   ],</span><br><span class="line">   &quot;Resource&quot;: [</span><br><span class="line">    &quot;arn:aws:s3:::指定Buckets（桶）的名称/*&quot;</span><br><span class="line">   ]</span><br><span class="line">  &#125;</span><br><span class="line"> ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>点击<code>Create</code>创建 Service Account<br />
-<img src="http://www.crygcat.top:5661/lTqlYQ.png" alt="创建Key" /></p>
+<img src="http://www.crygcat.top:5661/i/20230804/64cd17e6e0cb4.png" alt="创建Key02" /></p>
 <p>创建成功会生成<code>Access Key</code>和<code>Secret Key</code>，点击<code>Download for import</code>下载保存信息，或单独复制保存<br />
-<img src="http://www.crygcat.top:5661/Zq9DXs.png" alt="创建Key" /></p>
+<img src="http://www.crygcat.top:5661/i/20230804/64cd17e75a72c.png" alt="创建Key03" /></p>
 <h3 id="设置区域"><a class="markdownIt-Anchor" href="#设置区域"></a> 设置区域</h3>
 <p>点击<code>Settings</code>，填入<code>cn</code>，<code>中国</code>，点击<code>Restore Defaults</code>完成设置<br />
-<img src="http://www.crygcat.top:5661/wyuDIN.png" alt="设置区域" /></p>
+<img src="http://www.crygcat.top:5661/i/20230804/64cd17e96d761.png" alt="设置区域" /></p>
 <hr />
 <h1 id="四-迁移minio"><a class="markdownIt-Anchor" href="#四-迁移minio"></a> 四、迁移MinIO</h1>
 <h2 id="1-准备"><a class="markdownIt-Anchor" href="#1-准备"></a> 1. 准备</h2>
