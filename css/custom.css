@@ -10,7 +10,7 @@
   --crygcat-color: #EC97B9;
   --crygcat-font-color: #363636;
   --crygcat-font-grey: #888888;
-  --crygcat-white: #fff;
+  --crygcat-white: #FDFDFD;
   --crygcat-white-op: rgba(255, 255, 255, 0.2);
   --crygcat-black: #000;
   --crygcat-black-op: rgba(0, 0, 0, 0.2);
@@ -147,6 +147,25 @@
     background-color: transparent!important;
 	
 }
+
+/* 首页 - 开始 */
+/* 首页文章标题链接颜色 */
+#content-inner .recent-post-item .article-title:hover{
+    color: var(--crygcat-color)!important;
+}
+#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap a:hover{
+    color: var(--crygcat-color)!important;
+    text-decoration: none !important;
+}
+/* 首页 - 结束 */
+
+.article-sort-meta > .article-meta-wrap a:hover{
+    color: var(--crygcat-color)!important;
+}
+
+
+/* *************************************************************************************** */
+
 
 /* Ariasakaの小窝 - 导航栏居中 - 开始 */
 #nav-right{
