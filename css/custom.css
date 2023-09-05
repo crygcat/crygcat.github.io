@@ -159,9 +159,18 @@
 }
 /* 首页 - 结束 */
 
+/* 归档 - 开始 */
 .article-sort-meta > .article-meta-wrap a:hover{
     color: var(--crygcat-color)!important;
 }
+/* 归档 - 结束 */
+
+/* 文章 - 开始 */
+#post-info #post-meta a:hover{
+    color: var(--crygcat-color)!important;
+    text-decoration: none !important;
+}
+/* 文章 - 结束 */
 
 
 /* *************************************************************************************** */
